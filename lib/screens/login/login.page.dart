@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/register/register.page.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 import 'package:quiz_app/widgets/button.dart';
 import 'package:quiz_app/widgets/input.dart';
@@ -78,6 +79,13 @@ class _LoginPageState extends State<LoginPage> {
           Button(
             'Entrar',
             onPressed: () => _userLogin(),
+          ),
+          Button(
+            'Cadastre-se',
+            onPressed: () => {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => RegisterPage()))
+            },
           ),
         ],
       ),
