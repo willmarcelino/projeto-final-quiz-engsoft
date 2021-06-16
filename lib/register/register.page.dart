@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:quiz_app/screens/login/login.page.dart';
 import 'package:quiz_app/screens/welcome/welcome_screen.dart';
 import 'package:quiz_app/widgets/button.dart';
 import 'package:quiz_app/widgets/input.dart';
@@ -15,6 +16,7 @@ FirebaseAuth auth = FirebaseAuth.instance;
 class _RegisterPageState extends State<RegisterPage> {
   final _email = TextEditingController();
   final _password = TextEditingController();
+  final _password2 = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,24 +42,22 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  _userLogin() async {
+  _userRegister() async {
     try {
       await Firebase.initializeApp();
       UserCredential userCredential = await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
-        email: _email.text,
-        password: _password.text,
-      )
-          .then((_) {
-        Navigator.of(context).pushReplacement(
-            MaterialPageRoute(builder: (context) => WelcomeScreen()));
-      });
+          .createUserWithEmailAndPassword(
+              email: _email.text, password: _password.text)
+          .then((_) => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => LoginPage())));
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('Usuário não encontrado');
-      } else if (e.code == 'wrong-password') {
-        print('Senha errada');
+      if (e.code == 'weak-password') {
+        print('Senha muito Fraca');
+      } else if (e.code == 'email-already-in-use') {
+        print('E-mail já utilizado');
       }
+    } catch (e) {
+      print(e);
     }
   }
 
@@ -75,9 +75,21 @@ class _RegisterPageState extends State<RegisterPage> {
             true,
             controller: _password,
           ),
+          Input(
+            'Confirme a senha',
+            true,
+            controller: _password2,
+          ),
           Button(
-            'Entrar',
-            onPressed: () => _userLogin(),
+            'Registrar',
+            onPressed: () => _userRegister(),
+          ),
+          Button(
+            'Faça Login',
+            onPressed: () => {
+              Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (context) => LoginPage()))
+            },
           ),
         ],
       ),
