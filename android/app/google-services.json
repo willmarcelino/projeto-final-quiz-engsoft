@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "212202753134",
+    "project_id": "quizz-conhecimentos-gerais",
+    "storage_bucket": "quizz-conhecimentos-gerais.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:212202753134:android:3fd6dd21b7f29f638f6a7f",
+        "android_client_info": {
+          "package_name": "com.example.quiz_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "212202753134-ie96ahc1cqdc4mogsl32ppp6jarjp10t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSRcjog6jJulrgQCN-eF45nUfw2IxsLUY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "212202753134-ie96ahc1cqdc4mogsl32ppp6jarjp10t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
